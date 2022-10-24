@@ -1,24 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import Button from './components/Button';
+import Counter from './components/Counter'
+import freecodecampLogo from './images/freecodecamp-logo.png'
+import { useState } from 'react';
 
 function App() {
+
+  const [clickNum, setNum] = useState(0);
+
+  const clickHandler = () => {
+    setNum(clickNum + 1);
+  };
+
+  const clearCounter = () => {
+    setNum(0);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className='freecodecamp-logo-container'>
+        <img 
+          className='freecodecamp-logo-image'
+          src={freecodecampLogo}
+          alt='freecodecamp logo'/>
+      </div>
+      <div className='main-container'>
+        <Counter clickNum={clickNum}/>
+        <Button 
+          text='Click'
+          isClickButton={true}
+          clickHandler={clickHandler}/>
+        <Button 
+          text='Clear'
+          isClickButton={false}
+          clickHandler={clearCounter}/>
+        </div>
+      </div>
   );
 }
 
